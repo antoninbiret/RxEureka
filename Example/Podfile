@@ -1,0 +1,6 @@
+use_frameworks!
+target 'RxEureka_Tests' do
+  pod 'RxEureka', :path => '../'
+  
+  
+end
