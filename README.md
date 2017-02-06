@@ -30,7 +30,7 @@ let row = TextRow() { row in
 
 let disposeBag = DisposeBag()
 
-row
+row.rx.value
   .asObservable()
   .subscribe(onNext: { value in
     print("Row value did change to \(value)")
