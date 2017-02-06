@@ -74,7 +74,7 @@ RxEureka is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "RxEureka"
+pod "RxEureka", :git => 'git@github.com/antoninbiret/RxEureka', :branch => 'master'
 ```
 
 Tested with version __1.2.0__
