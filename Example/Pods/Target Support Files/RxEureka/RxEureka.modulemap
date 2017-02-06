@@ -1,0 +1,6 @@
+framework module RxEureka {
+  umbrella header "RxEureka-umbrella.h"
+
+  export *
+  module * { export * }
+}

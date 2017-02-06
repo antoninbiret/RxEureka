@@ -1,0 +1,25 @@
+PODS:
+  - Eureka (2.0.0-beta.1)
+  - RxCocoa (3.1.0):
+    - RxSwift (~> 3.1)
+  - RxEureka (0.1.0):
+    - Eureka (~> 2.0.0-beta.1)
+    - RxCocoa (~> 3.0)
+  - RxSwift (3.1.0)
+
+DEPENDENCIES:
+  - RxEureka (from `../`)
+
+EXTERNAL SOURCES:
+  RxEureka:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Eureka: d014adf16406745e1a78d5790ea37ed130a0a8e5
+  RxCocoa: 50d7564866da9299161e86a263ce12a0873904d8
+  RxEureka: dc5edd2c718d58d7fac8286b02a07c0dd1c8710e
+  RxSwift: 83ff553e7593fdfdcb2562933a64c0284dffdadc
+
+PODFILE CHECKSUM: aa230b9a843482884d3042f42aabc4381bc7327a
+
+COCOAPODS: 1.2.0

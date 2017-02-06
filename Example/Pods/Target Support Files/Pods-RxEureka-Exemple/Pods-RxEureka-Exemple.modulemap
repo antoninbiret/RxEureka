@@ -1,0 +1,6 @@
+framework module Pods_RxEureka_Exemple {
+  umbrella header "Pods-RxEureka-Exemple-umbrella.h"
+
+  export *
+  module * { export * }
+}
