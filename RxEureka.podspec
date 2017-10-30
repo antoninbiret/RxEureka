@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'RxEureka/Classes/**/*'
 
-  s.dependency 'Eureka', '~> 3.0.0'
+  s.dependency 'Eureka', '~> 4.0.0'
   s.dependency 'RxCocoa', '~> 3.0'
 
 end
