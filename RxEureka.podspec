@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RxEureka'
-  s.version          = '0.1.1'
+  s.version          = '0.2.0'
   s.summary          = 'An Rx wrapper of Eureka\'s rows.'
 
 
