@@ -1,6 +1,6 @@
 # RxEureka
 
-[![CI Status](http://img.shields.io/travis/antoninbiret/RxEureka.svg?style=flat)](https://travis-ci.org/antoninbiret/RxEureka)
+[![Build Status](https://travis-ci.org/antoninbiret/RxEureka.svg?branch=master)](https://travis-ci.org/antoninbiret/RxEureka)
 
 This library is a small Rx wrapper around [__Eureka__](https://eurekacommunity.github.io)
 
@@ -32,7 +32,7 @@ row.rx.value
   .subscribe(onNext: { value in
     print("Row value did change to \(value)")
   })
-  .addDisposableTo(disposeBag)
+  .disposed(by: disposeBag)
 ```
 
 ## Binding row value changes to variables
@@ -51,8 +51,8 @@ let disposeBag = DisposeBag()
 
 row.rx.value
   .asObservable()
-  .bindTo(myVariable)
-  .addDisposableTo(disposeBag)
+  .bind(to: myVariable)
+  .disposed(by: disposeBag)
 ```
 
 ## Example app

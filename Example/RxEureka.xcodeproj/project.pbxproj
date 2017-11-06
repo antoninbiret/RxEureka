@@ -7,32 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA63D7031B613DEFA66F661B /* Pods_RxEureka_Exemple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FBB8074BF295A43ADDC11CD /* Pods_RxEureka_Exemple.framework */; };
-		D2BDBF981E49190900ED1DF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDBF971E49190900ED1DF4 /* AppDelegate.swift */; };
-		D2BDBF9A1E49190900ED1DF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDBF991E49190900ED1DF4 /* ViewController.swift */; };
-		D2BDBF9D1E49190900ED1DF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BDBF9B1E49190900ED1DF4 /* Main.storyboard */; };
-		D2BDBF9F1E49190900ED1DF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BDBF9E1E49190900ED1DF4 /* Assets.xcassets */; };
-		D2BDBFA21E49190900ED1DF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BDBFA01E49190900ED1DF4 /* LaunchScreen.storyboard */; };
-		D2BDBFA81E491AD000ED1DF4 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDBFA71E491AD000ED1DF4 /* ViewModel.swift */; };
-		D2BDBFAA1E491F3000ED1DF4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDBFA91E491F3000ED1DF4 /* Model.swift */; };
+		BB3F456FA22A17F00577D846 /* Pods_RxEureka_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F52D3F70FE089B7E980391 /* Pods_RxEureka_Example.framework */; };
+		D2EE56901E4A974A0012A19F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EE56861E4A974A0012A19F /* AppDelegate.swift */; };
+		D2EE56911E4A974A0012A19F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2EE56871E4A974A0012A19F /* Assets.xcassets */; };
+		D2EE56921E4A974A0012A19F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EE56881E4A974A0012A19F /* LaunchScreen.storyboard */; };
+		D2EE56931E4A974A0012A19F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EE568A1E4A974A0012A19F /* Main.storyboard */; };
+		D2EE56951E4A974A0012A19F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EE568D1E4A974A0012A19F /* Model.swift */; };
+		D2EE56961E4A974A0012A19F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EE568E1E4A974A0012A19F /* ViewController.swift */; };
+		D2EE56971E4A974A0012A19F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EE568F1E4A974A0012A19F /* ViewModel.swift */; };
+		D2EE569F1E4A97FD0012A19F /* RxEurekaSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EE569E1E4A97FD0012A19F /* RxEurekaSpec.swift */; };
+		F39D3A29495A2FBF4B8A18A5 /* Pods_RxEureka_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10387AC110EFB60CBAA334A /* Pods_RxEureka_Tests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2EE56A11E4A97FD0012A19F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2BDBF941E49190900ED1DF4;
+			remoteInfo = "RxEureka-Example";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0FBB8074BF295A43ADDC11CD /* Pods_RxEureka_Exemple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxEureka_Exemple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29F52D3F70FE089B7E980391 /* Pods_RxEureka_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxEureka_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		414ECDD0CC958B40727AD02D /* Pods_RxEureka_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxEureka_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		523497AE06EDFDC845C42F6E /* Pods-RxEureka-UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-UITests/Pods-RxEureka-UITests.release.xcconfig"; sourceTree = "<group>"; };
 		58F4489CE77F523AC43460BA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		83606E28146EF9ACF6B75BB1 /* Pods-RxEureka-Exemple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-Exemple.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-Exemple/Pods-RxEureka-Exemple.debug.xcconfig"; sourceTree = "<group>"; };
 		8B8E3D8464A6D8DF1D2F6033 /* Pods-RxEureka-Exemple.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-Exemple.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-Exemple/Pods-RxEureka-Exemple.release.xcconfig"; sourceTree = "<group>"; };
-		D2BDBF951E49190900ED1DF4 /* RxEureka-Exemple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RxEureka-Exemple.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2BDBF971E49190900ED1DF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2BDBF991E49190900ED1DF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D2BDBF9C1E49190900ED1DF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D2BDBF9E1E49190900ED1DF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D2BDBFA11E49190900ED1DF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D2BDBFA31E49190900ED1DF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2BDBFA71E491AD000ED1DF4 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		D2BDBFA91E491F3000ED1DF4 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8E96D684F48B7B8ADF7AF57A /* Pods-RxEureka-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-Tests/Pods-RxEureka-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		9E021AC27F4E22C106A406B0 /* Pods-RxEureka-UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-UITests/Pods-RxEureka-UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CEA304CFC9CC827B8228F718 /* Pods-RxEureka-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-Tests/Pods-RxEureka-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		D2BDBF951E49190900ED1DF4 /* RxEureka-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RxEureka-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BDBFAB1E49246900ED1DF4 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
+		D2EE56861E4A974A0012A19F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2EE56871E4A974A0012A19F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2EE56891E4A974A0012A19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2EE568B1E4A974A0012A19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2EE568C1E4A974A0012A19F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2EE568D1E4A974A0012A19F /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		D2EE568E1E4A974A0012A19F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D2EE568F1E4A974A0012A19F /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		D2EE569C1E4A97FD0012A19F /* RxEureka-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RxEureka-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2EE569E1E4A97FD0012A19F /* RxEurekaSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxEurekaSpec.swift; sourceTree = "<group>"; };
+		D2EE56A01E4A97FD0012A19F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7DEA898A385A6E22285A896 /* RxEureka.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RxEureka.podspec; path = ../RxEureka.podspec; sourceTree = "<group>"; };
+		E10387AC110EFB60CBAA334A /* Pods_RxEureka_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxEureka_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE9F4B888246273CA414782 /* Pods-RxEureka-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-Example/Pods-RxEureka-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		ECF2B7CA25E52E2F2EE7C4A0 /* Pods-RxEureka-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxEureka-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxEureka-Example/Pods-RxEureka-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +64,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA63D7031B613DEFA66F661B /* Pods_RxEureka_Exemple.framework in Frameworks */,
+				BB3F456FA22A17F00577D846 /* Pods_RxEureka_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EE56991E4A97FD0012A19F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F39D3A29495A2FBF4B8A18A5 /* Pods_RxEureka_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +83,9 @@
 			isa = PBXGroup;
 			children = (
 				0FBB8074BF295A43ADDC11CD /* Pods_RxEureka_Exemple.framework */,
+				E10387AC110EFB60CBAA334A /* Pods_RxEureka_Tests.framework */,
+				29F52D3F70FE089B7E980391 /* Pods_RxEureka_Example.framework */,
+				414ECDD0CC958B40727AD02D /* Pods_RxEureka_UITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -59,7 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				D2BDBF961E49190900ED1DF4 /* RxEureka-Exemple */,
+				D2EE56851E4A974A0012A19F /* RxEureka-Example */,
+				D2EE569D1E4A97FD0012A19F /* RxEureka-Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				78071E9446562009BEF6023F /* Pods */,
 				5BC10F2E46CCE05934C40376 /* Frameworks */,
@@ -69,7 +105,8 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2BDBF951E49190900ED1DF4 /* RxEureka-Exemple.app */,
+				D2BDBF951E49190900ED1DF4 /* RxEureka-Example.app */,
+				D2EE569C1E4A97FD0012A19F /* RxEureka-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,47 +126,83 @@
 			children = (
 				83606E28146EF9ACF6B75BB1 /* Pods-RxEureka-Exemple.debug.xcconfig */,
 				8B8E3D8464A6D8DF1D2F6033 /* Pods-RxEureka-Exemple.release.xcconfig */,
+				8E96D684F48B7B8ADF7AF57A /* Pods-RxEureka-Tests.debug.xcconfig */,
+				CEA304CFC9CC827B8228F718 /* Pods-RxEureka-Tests.release.xcconfig */,
+				ECE9F4B888246273CA414782 /* Pods-RxEureka-Example.debug.xcconfig */,
+				ECF2B7CA25E52E2F2EE7C4A0 /* Pods-RxEureka-Example.release.xcconfig */,
+				9E021AC27F4E22C106A406B0 /* Pods-RxEureka-UITests.debug.xcconfig */,
+				523497AE06EDFDC845C42F6E /* Pods-RxEureka-UITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		D2BDBF961E49190900ED1DF4 /* RxEureka-Exemple */ = {
+		D2EE56851E4A974A0012A19F /* RxEureka-Example */ = {
 			isa = PBXGroup;
 			children = (
-				D2BDBF971E49190900ED1DF4 /* AppDelegate.swift */,
-				D2BDBF991E49190900ED1DF4 /* ViewController.swift */,
-				D2BDBF9B1E49190900ED1DF4 /* Main.storyboard */,
-				D2BDBF9E1E49190900ED1DF4 /* Assets.xcassets */,
-				D2BDBFA01E49190900ED1DF4 /* LaunchScreen.storyboard */,
-				D2BDBFA31E49190900ED1DF4 /* Info.plist */,
-				D2BDBFA71E491AD000ED1DF4 /* ViewModel.swift */,
-				D2BDBFA91E491F3000ED1DF4 /* Model.swift */,
+				D2EE56861E4A974A0012A19F /* AppDelegate.swift */,
+				D2EE56871E4A974A0012A19F /* Assets.xcassets */,
+				D2EE56881E4A974A0012A19F /* LaunchScreen.storyboard */,
+				D2EE568A1E4A974A0012A19F /* Main.storyboard */,
+				D2EE568C1E4A974A0012A19F /* Info.plist */,
+				D2EE568D1E4A974A0012A19F /* Model.swift */,
+				D2EE568E1E4A974A0012A19F /* ViewController.swift */,
+				D2EE568F1E4A974A0012A19F /* ViewModel.swift */,
 			);
-			path = "RxEureka-Exemple";
+			path = "RxEureka-Example";
+			sourceTree = "<group>";
+		};
+		D2EE569D1E4A97FD0012A19F /* RxEureka-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D2EE569E1E4A97FD0012A19F /* RxEurekaSpec.swift */,
+				D2EE56A01E4A97FD0012A19F /* Info.plist */,
+			);
+			path = "RxEureka-Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D2BDBF941E49190900ED1DF4 /* RxEureka-Exemple */ = {
+		D2BDBF941E49190900ED1DF4 /* RxEureka-Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D2BDBFA41E49190900ED1DF4 /* Build configuration list for PBXNativeTarget "RxEureka-Exemple" */;
+			buildConfigurationList = D2BDBFA41E49190900ED1DF4 /* Build configuration list for PBXNativeTarget "RxEureka-Example" */;
 			buildPhases = (
-				A34311157A643F5AE4EB2337 /* [CP] Check Pods Manifest.lock */,
+				827799A7DC8E54DB6D06F27E /* [CP] Check Pods Manifest.lock */,
 				D2BDBF911E49190900ED1DF4 /* Sources */,
 				D2BDBF921E49190900ED1DF4 /* Frameworks */,
 				D2BDBF931E49190900ED1DF4 /* Resources */,
-				0818E10FE3B7D8F8DF38C690 /* [CP] Embed Pods Frameworks */,
-				DBE4E7B74BF124C50D03031E /* [CP] Copy Pods Resources */,
+				674C12957924D97B914BCD41 /* [CP] Embed Pods Frameworks */,
+				66D110406330DB8DF0F72A8D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "RxEureka-Exemple";
+			name = "RxEureka-Example";
 			productName = "RxEureka-Exemple";
-			productReference = D2BDBF951E49190900ED1DF4 /* RxEureka-Exemple.app */;
+			productReference = D2BDBF951E49190900ED1DF4 /* RxEureka-Example.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D2EE569B1E4A97FD0012A19F /* RxEureka-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2EE56A31E4A97FD0012A19F /* Build configuration list for PBXNativeTarget "RxEureka-Tests" */;
+			buildPhases = (
+				D40BDA88CFEFE34AF82BE036 /* [CP] Check Pods Manifest.lock */,
+				D2EE56981E4A97FD0012A19F /* Sources */,
+				D2EE56991E4A97FD0012A19F /* Frameworks */,
+				D2EE569A1E4A97FD0012A19F /* Resources */,
+				E3C447046EC9C20C8DC497A6 /* [CP] Embed Pods Frameworks */,
+				D5227C6F8D0255509EEE94EA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2EE56A21E4A97FD0012A19F /* PBXTargetDependency */,
+			);
+			name = "RxEureka-Tests";
+			productName = "RxEureka-Tests";
+			productReference = D2EE569C1E4A97FD0012A19F /* RxEureka-Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -137,7 +210,7 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
@@ -145,7 +218,11 @@
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = KFK92SBNK3;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
+					};
+					D2EE569B1E4A97FD0012A19F = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Manual;
+						TestTargetID = D2BDBF941E49190900ED1DF4;
 					};
 				};
 			};
@@ -162,7 +239,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D2BDBF941E49190900ED1DF4 /* RxEureka-Exemple */,
+				D2BDBF941E49190900ED1DF4 /* RxEureka-Example */,
+				D2EE569B1E4A97FD0012A19F /* RxEureka-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -172,22 +250,44 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BDBFA21E49190900ED1DF4 /* LaunchScreen.storyboard in Resources */,
-				D2BDBF9F1E49190900ED1DF4 /* Assets.xcassets in Resources */,
-				D2BDBF9D1E49190900ED1DF4 /* Main.storyboard in Resources */,
+				D2EE56931E4A974A0012A19F /* Main.storyboard in Resources */,
+				D2EE56911E4A974A0012A19F /* Assets.xcassets in Resources */,
+				D2EE56921E4A974A0012A19F /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EE569A1E4A97FD0012A19F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0818E10FE3B7D8F8DF38C690 /* [CP] Embed Pods Frameworks */ = {
+		66D110406330DB8DF0F72A8D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Exemple/Pods-RxEureka-Exemple-frameworks.sh",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Example/Pods-RxEureka-Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		674C12957924D97B914BCD41 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Example/Pods-RxEureka-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxEureka/RxEureka.framework",
@@ -202,10 +302,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Exemple/Pods-RxEureka-Exemple-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Example/Pods-RxEureka-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A34311157A643F5AE4EB2337 /* [CP] Check Pods Manifest.lock */ = {
+		827799A7DC8E54DB6D06F27E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -216,14 +316,32 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RxEureka-Exemple-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-RxEureka-Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DBE4E7B74BF124C50D03031E /* [CP] Copy Pods Resources */ = {
+		D40BDA88CFEFE34AF82BE036 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RxEureka-Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5227C6F8D0255509EEE94EA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -235,7 +353,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Exemple/Pods-RxEureka-Exemple-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Tests/Pods-RxEureka-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3C447046EC9C20C8DC497A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Tests/Pods-RxEureka-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxEureka/RxEureka.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxEureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxEureka-Tests/Pods-RxEureka-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -245,30 +391,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BDBF9A1E49190900ED1DF4 /* ViewController.swift in Sources */,
-				D2BDBFA81E491AD000ED1DF4 /* ViewModel.swift in Sources */,
-				D2BDBF981E49190900ED1DF4 /* AppDelegate.swift in Sources */,
-				D2BDBFAA1E491F3000ED1DF4 /* Model.swift in Sources */,
+				D2EE56961E4A974A0012A19F /* ViewController.swift in Sources */,
+				D2EE56901E4A974A0012A19F /* AppDelegate.swift in Sources */,
+				D2EE56971E4A974A0012A19F /* ViewModel.swift in Sources */,
+				D2EE56951E4A974A0012A19F /* Model.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EE56981E4A97FD0012A19F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2EE569F1E4A97FD0012A19F /* RxEurekaSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		D2BDBF9B1E49190900ED1DF4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2BDBF9C1E49190900ED1DF4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		D2EE56A21E4A97FD0012A19F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2BDBF941E49190900ED1DF4 /* RxEureka-Example */;
+			targetProxy = D2EE56A11E4A97FD0012A19F /* PBXContainerItemProxy */;
 		};
-		D2BDBFA01E49190900ED1DF4 /* LaunchScreen.storyboard */ = {
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2EE56881E4A974A0012A19F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D2BDBFA11E49190900ED1DF4 /* Base */,
+				D2EE56891E4A974A0012A19F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D2EE568A1E4A974A0012A19F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2EE568B1E4A974A0012A19F /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -375,20 +537,21 @@
 		};
 		D2BDBFA51E49190900ED1DF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83606E28146EF9ACF6B75BB1 /* Pods-RxEureka-Exemple.debug.xcconfig */;
+			baseConfigurationReference = ECE9F4B888246273CA414782 /* Pods-RxEureka-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = KFK92SBNK3;
-				INFOPLIST_FILE = "RxEureka-Exemple/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "RxEureka-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antoninbiret.RxEureka-Exemple";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antoninbiret.RxEureka-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -396,20 +559,65 @@
 		};
 		D2BDBFA61E49190900ED1DF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B8E3D8464A6D8DF1D2F6033 /* Pods-RxEureka-Exemple.release.xcconfig */;
+			baseConfigurationReference = ECF2B7CA25E52E2F2EE7C4A0 /* Pods-RxEureka-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = KFK92SBNK3;
-				INFOPLIST_FILE = "RxEureka-Exemple/Info.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "RxEureka-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antoninbiret.RxEureka-Exemple";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antoninbiret.RxEureka-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D2EE56A41E4A97FD0012A19F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E96D684F48B7B8ADF7AF57A /* Pods-RxEureka-Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "RxEureka-Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antoninbiret.RxEureka-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RxEureka-Example.app/RxEureka-Example";
+			};
+			name = Debug;
+		};
+		D2EE56A51E4A97FD0012A19F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEA304CFC9CC827B8228F718 /* Pods-RxEureka-Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "RxEureka-Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antoninbiret.RxEureka-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RxEureka-Example.app/RxEureka-Example";
 			};
 			name = Release;
 		};
@@ -425,11 +633,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2BDBFA41E49190900ED1DF4 /* Build configuration list for PBXNativeTarget "RxEureka-Exemple" */ = {
+		D2BDBFA41E49190900ED1DF4 /* Build configuration list for PBXNativeTarget "RxEureka-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2BDBFA51E49190900ED1DF4 /* Debug */,
 				D2BDBFA61E49190900ED1DF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2EE56A31E4A97FD0012A19F /* Build configuration list for PBXNativeTarget "RxEureka-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2EE56A41E4A97FD0012A19F /* Debug */,
+				D2EE56A51E4A97FD0012A19F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

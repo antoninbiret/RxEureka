@@ -1,6 +1,23 @@
+platform :ios, '8.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
 use_frameworks!
-target 'RxEureka-Exemple' do
+
+def shared
   pod 'RxEureka', :path => '../'
+end
 
+def shared_tests
+  pod 'Nimble', '~> 7.0'
+  pod 'Quick', '~> 1.2'
+end
 
+target 'RxEureka-Example' do
+  shared
+end
+
+target 'RxEureka-Tests' do
+  shared
+  shared_tests
 end

@@ -16,6 +16,7 @@ public extension Reactive where Base: RowOf<String>, Base: RowType {
 
   public var value: ControlProperty<String?> {
     let source = Observable<String?>.create { observer in
+      observer.onNext(self.base.value)
       self.base.onChange({ (row) in
         observer.onNext(row.value)
       })
