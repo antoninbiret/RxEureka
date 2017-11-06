@@ -1,13 +1,11 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
-
 language: objective-c
 osx_image: xcode9
-xcode_sdk: iphonesimulator11.0
 
 before_install:
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - bundle install
+
+before_script: 
+  - cd Example
 
 script:
-- set -o pipefail && xcodebuild build -workspace Example/RxEureka.xcworkspace -scheme RxEureka-Exemple -sdk iphonesimulator11.0 ONLY_ACTIVE_ARCH=NO | xcpretty
+  - bundle exec fastlane test 
