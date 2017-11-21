@@ -1,6 +1,9 @@
 # RxEureka
 
 [![Build Status](https://travis-ci.org/antoninbiret/RxEureka.svg?branch=master)](https://travis-ci.org/antoninbiret/RxEureka)
+[![Version](https://img.shields.io/cocoapods/v/RxEureka.svg?style=flat)](http://cocoapods.org/pods/RxEureka)
+[![License](https://img.shields.io/cocoapods/l/RxEureka.svg?style=flat)](http://cocoapods.org/pods/RxEureka)
+[![Platform](https://img.shields.io/cocoapods/p/RxEureka.svg?style=flat)](http://cocoapods.org/pods/RxEureka)
 
 This library is a small Rx wrapper around [__Eureka__](https://eurekacommunity.github.io)
 
