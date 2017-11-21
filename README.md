@@ -62,8 +62,8 @@ The app uses`RxSwift`, `RxCocoa` to observe values from `Eureka`.
 
 ## Requirements
 
-* Xcode 8.x
-* Swift 3.0
+* Xcode 9.x
+* Swift 4.0
 
 ## Installation
 
@@ -71,7 +71,7 @@ RxEureka is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "RxEureka", :git => 'https://github.com/antoninbiret/RxEureka.git', :branch => 'master'
+pod "RxEureka", "~> 0.2"
 ```
 
 Tested with version __1.2.0__
