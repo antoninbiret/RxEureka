@@ -15,12 +15,17 @@ extension RowOf: ReactiveCompatible { }
 public extension Reactive where Base: RowOf<String>, Base: RowType {
 
   public var value: ControlProperty<String?> {
+    var base: Base? = self.base
+	
     let source = Observable<String?>.create { observer in
-      observer.onNext(self.base.value)
-      self.base.onChange({ (row) in
+      observer.onNext(base?.value)
+	
+      base?.onChange({ (row) in
         observer.onNext(row.value)
       })
+
       return Disposables.create {
+        base = nil
         observer.onCompleted()
       }
     }
