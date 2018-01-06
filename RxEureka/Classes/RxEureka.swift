@@ -30,4 +30,25 @@ public extension Reactive where Base: RowOf<String>, Base: RowType {
     return ControlProperty(values: source, valueSink: bindingObserver)
   }
 
+  public var isHighlighted: ControlProperty<Bool> {
+    var base: Base? = self.base
+
+    let source = Observable<Bool>.create { observer in
+      observer.onNext(base?.isHighlighted ?? false)
+
+      base?.onCellHighlightChanged({ (_, row) in
+        observer.onNext(row.isHighlighted)
+      })
+
+      return Disposables.create {
+        base = nil
+        observer.onCompleted()
+      }
+    }
+    let bindingObserver = BindableObserver(container: self.base) { (row, isHighlighted) in
+      row.isHighlighted = isHighlighted
+    }
+    return ControlProperty(values: source, valueSink: bindingObserver)
+  }
+
 }
