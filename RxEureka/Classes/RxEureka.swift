@@ -15,12 +15,17 @@ extension BaseRow: ReactiveCompatible { }
 public extension Reactive where Base: BaseRow, Base: RowType {
 
   public var value: ControlProperty<Base.Cell.Value?> {
+    var base: Base? = self.base
+	
     let source = Observable<Base.Cell.Value?>.create { observer in
-      observer.onNext(self.base.value)
-      self.base.onChange({ (row) in
+      observer.onNext(base?.value)
+	
+      base?.onChange({ (row) in
         observer.onNext(row.value)
       })
+
       return Disposables.create {
+        base = nil
         observer.onCompleted()
       }
     }
