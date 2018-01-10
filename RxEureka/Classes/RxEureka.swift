@@ -10,14 +10,14 @@ import Eureka
 import RxSwift
 import RxCocoa
 
-extension RowOf: ReactiveCompatible { }
+extension BaseRow: ReactiveCompatible { }
 
-public extension Reactive where Base: RowOf<String>, Base: RowType {
+public extension Reactive where Base: BaseRow, Base: RowType {
 
-  public var value: ControlProperty<String?> {
+  public var value: ControlProperty<Base.Cell.Value?> {
     var base: Base? = self.base
 	
-    let source = Observable<String?>.create { observer in
+    let source = Observable<Base.Cell.Value?>.create { observer in
       observer.onNext(base?.value)
 	
       base?.onChange({ (row) in
