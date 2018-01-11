@@ -13,13 +13,15 @@ import RxCocoa
 extension BaseRow: ReactiveCompatible { }
 
 public extension Reactive where Base: BaseRow, Base: RowType {
-
+  
   public var value: ControlProperty<Base.Cell.Value?> {
-    let source = Observable<Base.Cell.Value?>.create { observer in
-      observer.onNext(self.base.value)
-      self.base.onChange({ (row) in
-        observer.onNext(row.value)
-      })
+    let source = Observable<Base.Cell.Value?>.create { [weak base] observer in
+      if let _base = base {
+        observer.onNext(_base.value)
+        _base.onChange({ row in
+          observer.onNext(row.value)
+        })
+      }
       return Disposables.create {
         observer.onCompleted()
       }
@@ -29,5 +31,5 @@ public extension Reactive where Base: BaseRow, Base: RowType {
     }
     return ControlProperty(values: source, valueSink: bindingObserver)
   }
-
+  
 }
