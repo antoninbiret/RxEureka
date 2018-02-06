@@ -10,16 +10,18 @@ import Eureka
 import RxSwift
 import RxCocoa
 
-extension RowOf: ReactiveCompatible { }
+extension BaseRow: ReactiveCompatible { }
 
-public extension Reactive where Base: RowOf<String>, Base: RowType {
-
-  public var value: ControlProperty<String?> {
-    let source = Observable<String?>.create { observer in
-      observer.onNext(self.base.value)
-      self.base.onChange({ (row) in
-        observer.onNext(row.value)
-      })
+public extension Reactive where Base: BaseRow, Base: RowType {
+  
+  public var value: ControlProperty<Base.Cell.Value?> {
+    let source = Observable<Base.Cell.Value?>.create { [weak base] observer in
+      if let _base = base {
+        observer.onNext(_base.value)
+        _base.onChange({ row in
+          observer.onNext(row.value)
+        })
+      }
       return Disposables.create {
         observer.onCompleted()
       }
@@ -31,17 +33,14 @@ public extension Reactive where Base: RowOf<String>, Base: RowType {
   }
 
   public var isHighlighted: ControlProperty<Bool> {
-    var base: Base? = self.base
-
-    let source = Observable<Bool>.create { observer in
-      observer.onNext(base?.isHighlighted ?? false)
-
-      base?.onCellHighlightChanged({ (_, row) in
-        observer.onNext(row.isHighlighted)
-      })
-
+    let source = Observable<Bool>.create { [weak base] observer in
+      if let _base = base {
+        observer.onNext(_base.isHighlighted)
+        _base.onCellHighlightChanged({ (_, row) in
+          observer.onNext(row.isHighlighted)
+        })
+      }
       return Disposables.create {
-        base = nil
         observer.onCompleted()
       }
     }
