@@ -73,6 +73,50 @@ class RxEurekaSpec: QuickSpec {
       }
       
     }
+	
+	describe("TextRow's rx isHighlighted") {
+		
+		it("should stream the default value") {
+			let defaultValue = false
+			let row = TextRow()
+			form +++ Section() <<< row
+			
+			waitUntil { done in
+				row.rx.isHighlighted
+					.asObservable()
+					.subscribe(onNext: { v in
+						expect(v).to(equal(defaultValue))
+						done()
+					})
+					.disposed(by: disposeBag)
+			}
+		}
+		
+		context("if the isHighlighted is changed") {
+			it("should stream the new value") {
+				let row = TextRow()
+				form +++ Section() <<< row
+				
+				let _ = formViewController.view
+				
+				let expectedValue = true
+				waitUntil { done in
+					row.rx.isHighlighted
+						.asObservable()
+						.skip(1)
+						.subscribe(onNext: { v in
+							expect(v).to(equal(expectedValue))
+							done()
+						})
+						.disposed(by: disposeBag)
+					
+					formViewController.beginEditing(of: row.cell)
+				}
+				
+			}
+		}
+		
+	}
     
   }
 }
