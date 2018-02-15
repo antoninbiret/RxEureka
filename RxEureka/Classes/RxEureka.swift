@@ -31,5 +31,23 @@ public extension Reactive where Base: BaseRow, Base: RowType {
     }
     return ControlProperty(values: source, valueSink: bindingObserver)
   }
-  
+
+  public var isHighlighted: ControlProperty<Bool> {
+    let source = Observable<Bool>.create { [weak base] observer in
+      if let _base = base {
+        observer.onNext(_base.isHighlighted)
+        _base.onCellHighlightChanged({ (_, row) in
+          observer.onNext(row.isHighlighted)
+        })
+      }
+      return Disposables.create {
+        observer.onCompleted()
+      }
+    }
+    let bindingObserver = BindableObserver(container: self.base) { (row, isHighlighted) in
+      row.isHighlighted = isHighlighted
+    }
+    return ControlProperty(values: source, valueSink: bindingObserver)
+  }
+
 }

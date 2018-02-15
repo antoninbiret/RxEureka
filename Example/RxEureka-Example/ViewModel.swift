@@ -71,6 +71,10 @@ struct ViewModel: ViewModeling {
       .asObservable()
       .bind(to: self.model.text)
       .disposed(by: self._disposeBag)
+	
+    self._textRow.rx.isHighlighted.subscribe(onNext: {
+      print("TextRow.isHighlighted:",$0)
+    }).disposed(by: self._disposeBag)
     
     //Phone row
     self.model.phone
@@ -82,7 +86,11 @@ struct ViewModel: ViewModeling {
       .asObservable()
       .bind(to: self.model.phone)
       .disposed(by: self._disposeBag)
-    
+	
+    self._phoneRow.rx.isHighlighted.subscribe(onNext: {
+      print("PhoneRow.isHighlighted:",$0)
+    }).disposed(by: self._disposeBag)
+	
     //Change logger
     
     self.model.text
