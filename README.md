@@ -70,6 +70,8 @@ The app uses`RxSwift`, `RxCocoa` to observe values from `Eureka`.
 
 ## Installation
 
+### Cocoapods
+
 RxEureka is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
@@ -77,7 +79,23 @@ it, simply add the following line to your Podfile:
 pod "RxEureka", "~> 0.2"
 ```
 
-Tested with version __1.2.0__
+Tested with version Cocoapods __1.2.0__
+
+### Carthage
+
+RxEureka is available through [Carthage](https://github.com/Carthage/Carthage). To install
+it, simply add the following line to your Cartfile:
+
+```
+github "antoninbiret/RxEureka" ~> 0.2
+```
+
+Please make sure you also embed the framework dependencies into your Xcode project:
+`Eureka.framework`, `RxSwift.framework`, `RxCocoa.framework`.
+
+For details see the [Carthage: Getting Started](https://github.com/Carthage/Carthage#getting-started).
+
+Tested with version Carthage __0.28.0__
 
 ## Author
 
