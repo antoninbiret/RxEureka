@@ -79,6 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D2EE569B1E4A97FD0012A19F"
+            BuildableName = "RxEureka-Tests.xctest"
+            BlueprintName = "RxEureka-Tests"
+            ReferencedContainer = "container:RxEureka.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
