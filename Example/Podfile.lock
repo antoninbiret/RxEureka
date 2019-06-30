@@ -1,13 +1,13 @@
 PODS:
-  - Eureka (4.3.1)
+  - Eureka (5.0.0)
   - Nimble (8.0.2)
   - Quick (2.1.0)
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
   - RxEureka (0.3.0):
-    - Eureka (~> 4.0)
-    - RxCocoa (~> 5.0)
+    - Eureka
+    - RxCocoa
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
@@ -31,11 +31,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  Eureka: 0f64f477ec8ef6201c6fec143d60ff5c201cf654
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxEureka: c5916aa168235d85f8426d3d0cca65cc9df3fc3a
+  RxEureka: 4dc5b558f553d5ca2d4b9d8c5eca6eaf98830c8a
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 

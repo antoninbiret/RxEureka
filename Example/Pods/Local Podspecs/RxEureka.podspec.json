@@ -22,10 +22,10 @@
   "source_files": "RxEureka/Classes/**/*",
   "dependencies": {
     "Eureka": [
-      "~> 4.0"
+
     ],
     "RxCocoa": [
-      "~> 5.0"
+
     ]
   }
 }
