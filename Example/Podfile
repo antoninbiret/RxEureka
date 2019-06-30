@@ -10,7 +10,7 @@ end
 
 def shared_tests
   pod 'Nimble'
-  pod 'Quick'
+  pod 'Quick', '~>  2.1'
 end
 
 target 'RxEureka-Example' do
