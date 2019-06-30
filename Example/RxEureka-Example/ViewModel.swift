@@ -9,6 +9,7 @@
 import Eureka
 import RxEureka
 import RxSwift
+import RxCocoa
 
 protocol ViewModeling {
 

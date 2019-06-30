@@ -7,13 +7,13 @@
 //
 
 import RxSwift
-
+import RxCocoa
 struct Model {
-  let text: Variable<String?>
-  let phone: Variable<String?>
-
-  init(text: String?, phone: String?) {
-    self.text = Variable(text)
-    self.phone = Variable(phone)
-  }
+    let text: BehaviorRelay<String?>
+    let phone: BehaviorRelay<String?>
+    
+    init(text: String?, phone: String?) {
+        self.text = BehaviorRelay(value: text)
+        self.phone = BehaviorRelay(value: phone)
+    }
 }
