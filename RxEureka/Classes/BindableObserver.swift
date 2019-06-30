@@ -10,16 +10,16 @@ import Foundation
 import RxSwift
 
 public class BindableObserver<ContainerType, ValueType>: ObserverType {
-  
+
   private var _container: ContainerType?
-  
+
   private let _binding: (ContainerType, ValueType) -> Void
-  
+
   public init(container: ContainerType, binding: @escaping (ContainerType, ValueType) -> Void) {
     self._container = container
     self._binding = binding
   }
-  
+
   /**
    Binds next element
    */
@@ -36,9 +36,9 @@ public class BindableObserver<ContainerType, ValueType>: ObserverType {
       self._container = nil
     }
   }
-  
+
   deinit {
     self._container = nil
   }
-  
+
 }

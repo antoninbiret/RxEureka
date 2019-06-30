@@ -23,6 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 /// Generic options selector row that allows multiple selection.
 open class GenericMultipleSelectorRow<T, Cell: CellType>: Row<Cell>, PresenterRowType, NoValueDisplayTextConformance, OptionsProviderRow
@@ -76,7 +77,7 @@ open class GenericMultipleSelectorRow<T, Cell: CellType>: Row<Cell>, PresenterRo
      */
     open override func prepare(for segue: UIStoryboardSegue) {
         super.prepare(for: segue)
-        guard let rowVC = segue.destination as? PresentedController else { return }
+        guard let rowVC = segue.destination as Any as? PresentedController else { return }
         rowVC.title = selectorTitle ?? rowVC.title
         rowVC.onDismissCallback = presentationMode?.onDismissCallback ?? rowVC.onDismissCallback
         onPresentCallback?(cell.formViewController()!, rowVC)

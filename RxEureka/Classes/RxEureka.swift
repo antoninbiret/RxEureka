@@ -13,8 +13,8 @@ import RxCocoa
 extension BaseRow: ReactiveCompatible { }
 
 public extension Reactive where Base: BaseRow, Base: RowType {
-  
-  public var value: ControlProperty<Base.Cell.Value?> {
+
+    var value: ControlProperty<Base.Cell.Value?> {
     let source = Observable<Base.Cell.Value?>.create { [weak base] observer in
       if let _base = base {
         observer.onNext(_base.value)
@@ -32,7 +32,7 @@ public extension Reactive where Base: BaseRow, Base: RowType {
     return ControlProperty(values: source, valueSink: bindingObserver)
   }
 
-  public var isHighlighted: ControlProperty<Bool> {
+    var isHighlighted: ControlProperty<Bool> {
     let source = Observable<Bool>.create { [weak base] observer in
       if let _base = base {
         observer.onNext(_base.isHighlighted)
