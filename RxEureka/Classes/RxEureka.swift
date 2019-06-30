@@ -13,41 +13,40 @@ import RxCocoa
 extension BaseRow: ReactiveCompatible { }
 
 public extension Reactive where Base: BaseRow, Base: RowType {
-
+    
     var value: ControlProperty<Base.Cell.Value?> {
-    let source = Observable<Base.Cell.Value?>.create { [weak base] observer in
-      if let _base = base {
-        observer.onNext(_base.value)
-        _base.onChange({ row in
-          observer.onNext(row.value)
-        })
-      }
-      return Disposables.create {
-        observer.onCompleted()
-      }
+        let source = Observable<Base.Cell.Value?>.create { [weak base] observer in
+            if let _base = base {
+                observer.onNext(_base.value)
+                _base.onChange({ row in
+                    observer.onNext(row.value)
+                })
+            }
+            return Disposables.create {
+                observer.onCompleted()
+            }
+        }
+        let bindingObserver = BindableObserver(container: self.base) { (row, value) in
+            row.value = value
+        }
+        return ControlProperty(values: source, valueSink: bindingObserver)
     }
-    let bindingObserver = BindableObserver(container: self.base) { (row, value) in
-      row.value = value
-    }
-    return ControlProperty(values: source, valueSink: bindingObserver)
-  }
-
+    
     var isHighlighted: ControlProperty<Bool> {
-    let source = Observable<Bool>.create { [weak base] observer in
-      if let _base = base {
-        observer.onNext(_base.isHighlighted)
-        _base.onCellHighlightChanged({ (_, row) in
-          observer.onNext(row.isHighlighted)
-        })
-      }
-      return Disposables.create {
-        observer.onCompleted()
-      }
+        let source = Observable<Bool>.create { [weak base] observer in
+            if let _base = base {
+                observer.onNext(_base.isHighlighted)
+                _base.onCellHighlightChanged({ (_, row) in
+                    observer.onNext(row.isHighlighted)
+                })
+            }
+            return Disposables.create {
+                observer.onCompleted()
+            }
+        }
+        let bindingObserver = BindableObserver(container: self.base) { (row, isHighlighted) in
+            row.isHighlighted = isHighlighted
+        }
+        return ControlProperty(values: source, valueSink: bindingObserver)
     }
-    let bindingObserver = BindableObserver(container: self.base) { (row, isHighlighted) in
-      row.isHighlighted = isHighlighted
-    }
-    return ControlProperty(values: source, valueSink: bindingObserver)
-  }
-
 }
