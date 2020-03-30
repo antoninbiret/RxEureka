@@ -23,6 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 /**
  *  Protocol that every row that displays a new view controller must conform to.
@@ -48,6 +49,7 @@ extension PresenterRowType {
      
      - returns: this row
      */
+    @discardableResult
     public func onPresent(_ callback: ((FormViewController, PresentedControllerType) -> Void)?) -> Self {
         onPresentCallback = callback
         return self

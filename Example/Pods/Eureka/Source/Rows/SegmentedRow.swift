@@ -23,6 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 // MARK: SegmentedCell
 
@@ -35,32 +36,33 @@ open class SegmentedCell<T: Equatable> : Cell<T>, CellType {
     fileprivate var observingTitleText = false
     private var awakeFromNibCalled = false
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         let segmentedControl = UISegmentedControl()
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.setContentHuggingPriority(UILayoutPriority(250), for: .horizontal)
+        segmentedControl.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .horizontal)
         self.segmentedControl = segmentedControl
 
         self.titleLabel = self.textLabel
         self.titleLabel?.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel?.setContentHuggingPriority(UILayoutPriority(500), for: .horizontal)
+        self.titleLabel?.setContentHuggingPriority(UILayoutPriority(rawValue: 500), for: .horizontal)
+        self.titleLabel?.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
-        NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationWillResignActive, object: nil, queue: nil) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] _ in
             guard let me = self else { return }
             guard me.observingTitleText else { return }
             me.titleLabel?.removeObserver(me, forKeyPath: "text")
             me.observingTitleText = false
         }
-        NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
             guard let me = self else { return }
             guard !me.observingTitleText else { return }
-            me.titleLabel?.addObserver(me, forKeyPath: "text", options: NSKeyValueObservingOptions.old.union(.new), context: nil)
+            me.titleLabel?.addObserver(me, forKeyPath: "text", options: [.new, .old], context: nil)
             me.observingTitleText = true
         }
 
-        NotificationCenter.default.addObserver(forName: Notification.Name.UIContentSizeCategoryDidChange, object: nil, queue: nil) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: nil) { [weak self] _ in
             self?.titleLabel = self?.textLabel
             self?.setNeedsUpdateConstraints()
         }
@@ -90,9 +92,9 @@ open class SegmentedCell<T: Equatable> : Cell<T>, CellType {
                 titleLabel?.removeObserver(self, forKeyPath: "text")
             }
             imageView?.removeObserver(self, forKeyPath: "image")
-            NotificationCenter.default.removeObserver(self, name: Notification.Name.UIApplicationWillResignActive, object: nil)
-            NotificationCenter.default.removeObserver(self, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
-            NotificationCenter.default.removeObserver(self, name: Notification.Name.UIContentSizeCategoryDidChange, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIContentSizeCategory.didChangeNotification, object: nil)
         }
 
     }
@@ -108,12 +110,12 @@ open class SegmentedCell<T: Equatable> : Cell<T>, CellType {
         detailTextLabel?.text = nil
 
         updateSegmentedControl()
-        segmentedControl.selectedSegmentIndex = selectedIndex() ?? UISegmentedControlNoSegment
+        segmentedControl.selectedSegmentIndex = selectedIndex() ?? UISegmentedControl.noSegment
         segmentedControl.isEnabled = !row.isDisabled
     }
 
     @objc func valueChanged() {
-        row.value =  (row as! SegmentedRow<T>).options?[segmentedControl.selectedSegmentIndex]
+        row.value = (row as! SegmentedRow<T>).options?[segmentedControl.selectedSegmentIndex]
     }
 
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -128,7 +130,7 @@ open class SegmentedCell<T: Equatable> : Cell<T>, CellType {
 
     func updateSegmentedControl() {
         segmentedControl.removeAllSegments()
-        
+
         (row as! SegmentedRow<T>).options?.reversed().forEach {
             if let image = $0 as? UIImage {
                 segmentedControl.insertSegment(with: image, at: 0, animated: false)
@@ -139,7 +141,10 @@ open class SegmentedCell<T: Equatable> : Cell<T>, CellType {
     }
 
     open override func updateConstraints() {
-        guard !awakeFromNibCalled else { return }
+        guard !awakeFromNibCalled else {
+            super.updateConstraints()
+            return
+        }
         contentView.removeConstraints(dynamicConstraints)
         dynamicConstraints = []
         var views: [String: AnyObject] =  ["segmentedControl": segmentedControl]
@@ -158,7 +163,7 @@ open class SegmentedCell<T: Equatable> : Cell<T>, CellType {
             dynamicConstraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
         }
 
-        dynamicConstraints.append(NSLayoutConstraint(item: segmentedControl, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: contentView, attribute: .width, multiplier: 0.3, constant: 0.0))
+        dynamicConstraints.append(NSLayoutConstraint(item: segmentedControl!, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: contentView, attribute: .width, multiplier: 0.3, constant: 0.0))
 
         if hasImageView && hasTitleLabel {
             dynamicConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:[imageView]-(15)-[titleLabel]-[segmentedControl]-|", options: [], metrics: nil, views: views)
@@ -175,7 +180,7 @@ open class SegmentedCell<T: Equatable> : Cell<T>, CellType {
 
     func selectedIndex() -> Int? {
         guard let value = row.value else { return nil }
-        return (row as! SegmentedRow<T>).options?.index(of: value)
+        return (row as! SegmentedRow<T>).options?.firstIndex(of: value)
     }
 }
 

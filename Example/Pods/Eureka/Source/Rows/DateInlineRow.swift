@@ -23,6 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 extension DatePickerRowProtocol {
 
@@ -89,12 +90,9 @@ open class _CountDownInlineRow: _DateInlineFieldRow {
             guard let date = $0 else {
                 return nil
             }
-            let hour = Calendar.current.component(.hour, from: date)
-            let min = Calendar.current.component(.minute, from: date)
-            if hour == 1 {
-                return "\(hour) hour \(min) min"
-            }
-            return "\(hour) hours \(min) min"
+
+            let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+            return DateComponentsFormatter.localizedString(from: dateComponents, unitsStyle: .full)?.replacingOccurrences(of: ",", with: "")
         }
     }
 

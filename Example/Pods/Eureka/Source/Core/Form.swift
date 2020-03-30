@@ -32,7 +32,7 @@ public protocol FormDelegate : class {
     func rowsHaveBeenAdded(_ rows: [BaseRow], at: [IndexPath])
     func rowsHaveBeenRemoved(_ rows: [BaseRow], at: [IndexPath])
     func rowsHaveBeenReplaced(oldRows: [BaseRow], newRows: [BaseRow], at: [IndexPath])
-    func valueHasBeenChanged(for: BaseRow, oldValue: Any?, newValue: Any?)
+    func valueHasBeenChanged(for row: BaseRow, oldValue: Any?, newValue: Any?)
 }
 
 // MARK: Form
@@ -99,9 +99,9 @@ public final class Form {
 
     /**
      Method used to get all the values of all the rows of the form. Only rows with tag are included.
-     
+
      - parameter includeHidden: If the values of hidden rows should be included.
-     
+
      - returns: A dictionary mapping the rows tag to its value. [tag: value]
      */
     public func values(includeHidden: Bool = false) -> [String: Any?] {
@@ -115,7 +115,7 @@ public final class Form {
 
     /**
      Set values to the rows of this form
-     
+
      - parameter values: A dictionary mapping tag to value of the rows to be set. [tag: value]
      */
     public func setValues(_ values: [String: Any?]) {
@@ -171,7 +171,7 @@ extension Form: MutableCollection {
 
             if position < kvoWrapper.sections.count {
                 let oldSection = kvoWrapper.sections[position]
-                let oldSectionIndex = kvoWrapper._allSections.index(of: oldSection as! Section)!
+                let oldSectionIndex = kvoWrapper._allSections.firstIndex(of: oldSection as! Section)!
                 // Remove the previous section from the form
                 kvoWrapper._allSections[oldSectionIndex].willBeRemovedFromForm()
                 kvoWrapper._allSections[oldSectionIndex] = newValue
@@ -217,7 +217,7 @@ extension Form : RangeReplaceableCollection {
         for i in subRange.lowerBound..<subRange.upperBound {
             if let section = kvoWrapper.sections.object(at: i) as? Section {
                 section.willBeRemovedFromForm()
-                kvoWrapper._allSections.remove(at: kvoWrapper._allSections.index(of: section)!)
+                kvoWrapper._allSections.remove(at: kvoWrapper._allSections.firstIndex(of: section)!)
             }
         }
         kvoWrapper.sections.replaceObjects(in: NSRange(location: subRange.lowerBound, length: subRange.upperBound - subRange.lowerBound),
@@ -231,18 +231,21 @@ extension Form : RangeReplaceableCollection {
 
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
         // not doing anything with capacity
-        for section in kvoWrapper._allSections {
+
+        let sections = kvoWrapper._allSections
+        kvoWrapper.removeAllSections()
+
+        for section in sections {
             section.willBeRemovedFromForm()
         }
-        kvoWrapper.sections.removeAllObjects()
-        kvoWrapper._allSections.removeAll()
+
     }
 
     private func indexForInsertion(at index: Int) -> Int {
         guard index != 0 else { return 0 }
 
-        let row = kvoWrapper.sections[index-1]
-        if let i = kvoWrapper._allSections.index(of: row as! Section) {
+        let section = kvoWrapper.sections[index-1]
+        if let i = kvoWrapper._allSections.firstIndex(of: section as! Section) {
             return i + 1
         }
         return kvoWrapper._allSections.count
@@ -263,7 +266,7 @@ extension Form {
         init(form: Form) {
             self.form = form
             super.init()
-            addObserver(self, forKeyPath: "_sections", options: NSKeyValueObservingOptions.new.union(.old), context:nil)
+            addObserver(self, forKeyPath: "_sections", options: [.new, .old], context:nil)
         }
 
         deinit {
@@ -272,16 +275,25 @@ extension Form {
             _allSections.removeAll()
         }
 
-        public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        func removeAllSections() {
+            _sections = []
+            _allSections.removeAll()
+        }
 
+        public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
             let newSections = change?[NSKeyValueChangeKey.newKey] as? [Section] ?? []
             let oldSections = change?[NSKeyValueChangeKey.oldKey] as? [Section] ?? []
             guard let delegateValue = form?.delegate, let keyPathValue = keyPath, let changeType = change?[NSKeyValueChangeKey.kindKey] else { return }
             guard keyPathValue == "_sections" else { return }
             switch (changeType as! NSNumber).uintValue {
             case NSKeyValueChange.setting.rawValue:
-                let indexSet = change![NSKeyValueChangeKey.indexesKey] as? IndexSet ?? IndexSet(integer: 0)
-                delegateValue.sectionsHaveBeenAdded(newSections, at: indexSet)
+                if newSections.count == 0 {
+                    let indexSet = IndexSet(integersIn: 0..<oldSections.count)
+                    delegateValue.sectionsHaveBeenRemoved(oldSections, at: indexSet)
+                } else {
+                    let indexSet = change![NSKeyValueChangeKey.indexesKey] as? IndexSet ?? IndexSet(integersIn: 0..<newSections.count)
+                    delegateValue.sectionsHaveBeenAdded(newSections, at: indexSet)
+                }
             case NSKeyValueChange.insertion.rawValue:
                 let indexSet = change![NSKeyValueChangeKey.indexesKey] as! IndexSet
                 delegateValue.sectionsHaveBeenAdded(newSections, at: indexSet)
@@ -318,21 +330,21 @@ extension Form {
 
     func removeRowObservers(from taggable: Taggable, rowTags: [String], type: ConditionType) {
         for rowTag in rowTags {
-            guard var arr = rowObservers[rowTag]?[type], let index = arr.index(where: { $0 === taggable }) else { continue }
+            guard var arr = rowObservers[rowTag]?[type], let index = arr.firstIndex(where: { $0 === taggable }) else { continue }
             arr.remove(at: index)
         }
     }
 
     func nextRow(for row: BaseRow) -> BaseRow? {
         let allRows = rows
-        guard let index = allRows.index(of: row) else { return nil }
+        guard let index = allRows.firstIndex(of: row) else { return nil }
         guard index < allRows.count - 1 else { return nil }
         return allRows[index + 1]
     }
 
     func previousRow(for row: BaseRow) -> BaseRow? {
         let allRows = rows
-        guard let index = allRows.index(of: row) else { return nil }
+        guard let index = allRows.firstIndex(of: row) else { return nil }
         guard index > 0 else { return nil }
         return allRows[index - 1]
     }
@@ -343,7 +355,7 @@ extension Form {
 
     func showSection(_ section: Section) {
         guard !kvoWrapper.sections.contains(section) else { return }
-        guard var index = kvoWrapper._allSections.index(of: section) else { return }
+        guard var index = kvoWrapper._allSections.firstIndex(of: section) else { return }
         var formIndex = NSNotFound
         while formIndex == NSNotFound && index > 0 {
             index = index - 1
@@ -352,6 +364,10 @@ extension Form {
         }
         kvoWrapper.sections.insert(section, at: formIndex == NSNotFound ? 0 : formIndex + 1 )
     }
+	
+	var containsMultivaluedSection: Bool {
+		return kvoWrapper._allSections.contains { $0 is MultivaluedSection }
+	}
 
     func getValues(for rows: [BaseRow]) -> [String: Any?] {
         return rows.reduce([String: Any?]()) {
@@ -368,17 +384,26 @@ extension Form {
             return result
             } ?? [:]
     }
+
 }
 
 extension Form {
 
     @discardableResult
-    public func validate(includeHidden: Bool = false) -> [ValidationError] {
-        let rowsToValidate = includeHidden ? allRows : rows
-        return rowsToValidate.reduce([ValidationError]()) { res, row in
+    public func validate(includeHidden: Bool = false, includeDisabled: Bool = true) -> [ValidationError] {
+        let rowsWithHiddenFilter = includeHidden ? allRows : rows
+        let rowsWithDisabledFilter = includeDisabled ? rowsWithHiddenFilter : rowsWithHiddenFilter.filter { $0.isDisabled != true }
+        
+        return rowsWithDisabledFilter.reduce([ValidationError]()) { res, row in
             var res = res
             res.append(contentsOf: row.validate())
             return res
         }
     }
+    
+    // Reset rows validation
+    public func cleanValidationErrors(){
+        allRows.forEach { $0.cleanValidationErrors() }
+    }
 }
+

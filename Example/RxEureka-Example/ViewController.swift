@@ -12,13 +12,9 @@ import Eureka
 class ViewController: FormViewController {
 
   let viewModel: ViewModeling = ViewModel(model: Model(text: "RxEureka", phone: "0000"))
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-
     self.form = self.viewModel.form
-    
   }
-
 }
-

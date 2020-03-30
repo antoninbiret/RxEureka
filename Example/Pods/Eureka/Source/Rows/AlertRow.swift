@@ -22,9 +22,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 import Foundation
+import UIKit
 
-
-open class _AlertRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where Cell: BaseCell {
+open class _AlertRow<Cell: CellType>: AlertOptionsRow<Cell>, PresenterRowType where Cell: BaseCell {
 
     public typealias PresentedController = SelectorAlertController<_AlertRow<Cell>>
     

@@ -13,111 +13,105 @@ import Eureka
 import RxEureka
 
 class RxEurekaSpec: QuickSpec {
-  
-  override func spec() {
-    let disposeBag = DisposeBag()
     
-    let form = Form()
-    
-    
-    let formViewController = FormViewController()
-    formViewController.form = form
-    
-    describe("TextRow's rx value") {
-      
-      it("should stream the default value") {
-        let defaultValue = "Some input"
-        let row = TextRow()
-        form +++ Section() <<< row
+    override func spec() {
+        let disposeBag = DisposeBag()
+        let form = Form()
         
-        row.value = defaultValue
+        let formViewController = FormViewController()
+        formViewController.form = form
         
-        waitUntil { done in
-          row.rx.value
-            .asObservable()
-            .subscribe(onNext: { v in
-              expect(v).to(equal(defaultValue))
-              done()
-            })
-            .disposed(by: disposeBag)
-        }
-      }
-      
-      context("if the value is changed") {
-        it("should stream the new value") {
-          let defaultValue = "Some input"
-          let row = TextRow()
-          form +++ Section() <<< row
-          
-          let _ = formViewController.view
-          row.value = defaultValue
-          
-          let expectedValue = "A final input"
-          waitUntil { done in
-            row.rx.value
-              .asObservable()
-              .skip(1)
-              .subscribe(onNext: { v in
-                expect(v).to(equal(expectedValue))
-                done()
-              })
-              .disposed(by: disposeBag)
+        describe("TextRow's rx value") {
             
-            let cell = row.cell!
-            let textfield = cell.textField!
-            textfield.text = expectedValue
-            cell.textFieldDidChange(textfield)
-          }
-          
+            it("should stream the default value") {
+                let defaultValue = "Some input"
+                let row = TextRow()
+                form +++ Section() <<< row
+                
+                row.value = defaultValue
+                
+                waitUntil { done in
+                    row.rx.value
+                        .asObservable()
+                        .subscribe(onNext: { v in
+                            expect(v).to(equal(defaultValue))
+                            done()
+                        })
+                        .disposed(by: disposeBag)
+                }
+            }
+            
+            context("if the value is changed") {
+                it("should stream the new value") {
+                    let defaultValue = "Some input"
+                    let row = TextRow()
+                    form +++ Section() <<< row
+                    
+                    let _ = formViewController.view
+                    row.value = defaultValue
+                    
+                    let expectedValue = "A final input"
+                    waitUntil { done in
+                        row.rx.value
+                            .asObservable()
+                            .skip(1)
+                            .subscribe(onNext: { v in
+                                expect(v).to(equal(expectedValue))
+                                done()
+                            })
+                            .disposed(by: disposeBag)
+                        
+                        let cell = row.cell!
+                        let textfield = cell.textField!
+                        textfield.text = expectedValue
+                        cell.textFieldDidChange(textfield)
+                    }
+                }
+            }
         }
-      }
-      
+        
+        describe("TextRow's rx isHighlighted") {
+            
+            it("should stream the default value") {
+                let defaultValue = false
+                let row = TextRow()
+                form +++ Section() <<< row
+                
+                waitUntil { done in
+                    row.rx.isHighlighted
+                        .asObservable()
+                        .subscribe(onNext: { v in
+                            expect(v).to(equal(defaultValue))
+                            done()
+                        })
+                        .disposed(by: disposeBag)
+                }
+            }
+            
+            context("if the isHighlighted is changed") {
+                it("should stream the new value") {
+                    let row = TextRow()
+                    form +++ Section() <<< row
+                    
+                    let _ = formViewController.view
+                    
+                    let expectedValue = true
+                    waitUntil { done in
+                        row.rx.isHighlighted
+                            .asObservable()
+                            .skip(1)
+                            .subscribe(onNext: { v in
+                                expect(v).to(equal(expectedValue))
+                                done()
+                            })
+                            .disposed(by: disposeBag)
+                        
+                        formViewController.beginEditing(of: row.cell)
+                    }
+                    
+                }
+            }
+        }
     }
-	
-	describe("TextRow's rx isHighlighted") {
-		
-		it("should stream the default value") {
-			let defaultValue = false
-			let row = TextRow()
-			form +++ Section() <<< row
-			
-			waitUntil { done in
-				row.rx.isHighlighted
-					.asObservable()
-					.subscribe(onNext: { v in
-						expect(v).to(equal(defaultValue))
-						done()
-					})
-					.disposed(by: disposeBag)
-			}
-		}
-		
-		context("if the isHighlighted is changed") {
-			it("should stream the new value") {
-				let row = TextRow()
-				form +++ Section() <<< row
-				
-				let _ = formViewController.view
-				
-				let expectedValue = true
-				waitUntil { done in
-					row.rx.isHighlighted
-						.asObservable()
-						.skip(1)
-						.subscribe(onNext: { v in
-							expect(v).to(equal(expectedValue))
-							done()
-						})
-						.disposed(by: disposeBag)
-					
-					formViewController.beginEditing(of: row.cell)
-				}
-				
-			}
-		}
-		
-	}
-    
-  }
 }
 

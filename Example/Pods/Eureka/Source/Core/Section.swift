@@ -23,6 +23,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 /// The delegate of the Eureka sections.
 public protocol SectionDelegate: class {
@@ -43,8 +44,8 @@ extension Section : Hidable, SectionDelegate {}
 
 extension Section {
 
-    public func reload(with rowAnimation: UITableViewRowAnimation = .none) {
-        guard let tableView = (form?.delegate as? FormViewController)?.tableView, let index = index else { return }
+    public func reload(with rowAnimation: UITableView.RowAnimation = .none) {
+        guard let tableView = (form?.delegate as? FormViewController)?.tableView, let index = index, index < tableView.numberOfSections else { return }
         tableView.reloadSections(IndexSet(integer: index), with: rowAnimation)
     }
 }
@@ -64,12 +65,17 @@ extension Section {
         init(section: Section) {
             self.section = section
             super.init()
-            addObserver(self, forKeyPath: "_rows", options: NSKeyValueObservingOptions.new.union(.old), context:nil)
+            addObserver(self, forKeyPath: "_rows", options: [.new, .old], context:nil)
         }
 
         deinit {
             removeObserver(self, forKeyPath: "_rows")
             _rows.removeAllObjects()
+            _allRows.removeAll()
+        }
+
+        func removeAllRows() {
+            _rows = []
             _allRows.removeAll()
         }
 
@@ -81,8 +87,19 @@ extension Section {
             guard keyPathValue == "_rows" else { return }
             switch (changeType as! NSNumber).uintValue {
             case NSKeyValueChange.setting.rawValue:
-                section?.rowsHaveBeenAdded(newRows, at: IndexSet(integer: 0))
-                delegateValue?.rowsHaveBeenAdded(newRows, at:[IndexPath(index: 0)])
+                if newRows.count == 0 {
+                    let indexSet = IndexSet(integersIn: 0..<oldRows.count)
+                    section?.rowsHaveBeenRemoved(oldRows, at: indexSet)
+                    if let _index = section?.index {
+                        delegateValue?.rowsHaveBeenRemoved(oldRows, at: (0..<oldRows.count).map { IndexPath(row: $0, section: _index) })
+                    }
+                } else {
+                    let indexSet = IndexSet(integersIn: 0..<newRows.count)
+                    section?.rowsHaveBeenAdded(newRows, at: indexSet)
+                    if let _index = section?.index {
+                        delegateValue?.rowsHaveBeenAdded(newRows, at: indexSet.map { IndexPath(row: $0, section: _index) })
+                    }
+                }
             case NSKeyValueChange.insertion.rawValue:
                 let indexSet = change![NSKeyValueChangeKey.indexesKey] as! IndexSet
                 section?.rowsHaveBeenAdded(newRows, at: indexSet)
@@ -112,7 +129,7 @@ extension Section {
      *  If not, it returns nil.
      */
     public func rowBy<Row: RowType>(tag: String) -> Row? {
-        guard let index = kvoWrapper._allRows.index(where: { $0.tag == tag }) else { return nil }
+        guard let index = kvoWrapper._allRows.firstIndex(where: { $0.tag == tag }) else { return nil }
         return kvoWrapper._allRows[index] as? Row
     }
 }
@@ -141,7 +158,7 @@ open class Section {
     }
 
     /// Index of this section in the form it belongs to.
-    public var index: Int? { return form?.index(of: self) }
+    public var index: Int? { return form?.firstIndex(of: self) }
 
     /// Condition that determines if the section should be hidden or not.
     public var hidden: Condition? {
@@ -149,16 +166,27 @@ open class Section {
         didSet { addToRowObservers() }
     }
 
-    /// Returns if the section is currently hidden or not
+    /// Returns if the section is currently hidden or not.
     public var isHidden: Bool { return hiddenCache }
+
+    /// Returns all the rows in this section, including hidden rows.
+    public var allRows: [BaseRow] {
+        return kvoWrapper._allRows
+    }
 
     public required init() {}
 
-    public init(_ initializer: (Section) -> Void) {
+    #if swift(>=4.1)
+    public required init<S>(_ elements: S) where S: Sequence, S.Element == BaseRow {
+        self.append(contentsOf: elements)
+    }
+    #endif
+
+    public init(_ initializer: @escaping (Section) -> Void) {
         initializer(self)
     }
 
-    public init(_ header: String, _ initializer: (Section) -> Void = { _ in }) {
+    public init(_ header: String, _ initializer: @escaping (Section) -> Void = { _ in }) {
         self.header = HeaderFooterView(stringLiteral: header)
         initializer(self)
     }
@@ -193,7 +221,7 @@ open class Section {
 
     // MARK: Private
     lazy var kvoWrapper: KVOWrapper = { [unowned self] in return KVOWrapper(section: self) }()
-    
+
     var headerView: UIView?
     var footerView: UIView?
     var hiddenCache = false
@@ -219,7 +247,7 @@ extension Section: MutableCollection, BidirectionalCollection {
 
             if position < kvoWrapper.rows.count {
                 let oldRow = kvoWrapper.rows[position]
-                let oldRowIndex = kvoWrapper._allRows.index(of: oldRow as! BaseRow)!
+                let oldRowIndex = kvoWrapper._allRows.firstIndex(of: oldRow as! BaseRow)!
                 // Remove the previous row from the form
                 kvoWrapper._allRows[oldRowIndex].willBeRemovedFromSection()
                 kvoWrapper._allRows[oldRowIndex] = newValue
@@ -233,10 +261,8 @@ extension Section: MutableCollection, BidirectionalCollection {
     }
 
     public subscript (range: Range<Int>) -> ArraySlice<BaseRow> {
-        get { return kvoWrapper.rows.map({ $0 as! BaseRow })[range] }
-        set {
-            replaceSubrange(range, with: newValue)
-        }
+        get { return kvoWrapper.rows.map { $0 as! BaseRow }[range] }
+        set { replaceSubrange(range, with: newValue) }
     }
 
     public func index(after i: Int) -> Int { return i + 1 }
@@ -266,7 +292,7 @@ extension Section: RangeReplaceableCollection {
         for i in subrange.lowerBound..<subrange.upperBound {
             if let row = kvoWrapper.rows.object(at: i) as? BaseRow {
                 row.willBeRemovedFromSection()
-                kvoWrapper._allRows.remove(at: kvoWrapper._allRows.index(of: row)!)
+                kvoWrapper._allRows.remove(at: kvoWrapper._allRows.firstIndex(of: row)!)
             }
         }
 
@@ -281,11 +307,13 @@ extension Section: RangeReplaceableCollection {
 
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
         // not doing anything with capacity
-        for row in kvoWrapper._allRows {
+
+        let rows = kvoWrapper._allRows
+        kvoWrapper.removeAllRows()
+
+        for row in rows {
             row.willBeRemovedFromSection()
         }
-        kvoWrapper.rows.removeAllObjects()
-        kvoWrapper._allRows.removeAll()
     }
 
     @discardableResult
@@ -293,7 +321,7 @@ extension Section: RangeReplaceableCollection {
         let row = kvoWrapper.rows.object(at: position) as! BaseRow
         row.willBeRemovedFromSection()
         kvoWrapper.rows.removeObject(at: position)
-        if let index = kvoWrapper._allRows.index(of: row) {
+        if let index = kvoWrapper._allRows.firstIndex(of: row) {
             kvoWrapper._allRows.remove(at: index)
         }
 
@@ -304,14 +332,15 @@ extension Section: RangeReplaceableCollection {
         guard index != 0 else { return 0 }
 
         let row = kvoWrapper.rows[index-1]
-        if let i = kvoWrapper._allRows.index(of: row as! BaseRow) {
+        if let i = kvoWrapper._allRows.firstIndex(of: row as! BaseRow) {
             return i + 1
         }
         return kvoWrapper._allRows.count
     }
+
 }
 
-extension Section /* Condition */{
+extension Section /* Condition */ {
 
     // MARK: Hidden/Disable Engine
 
@@ -391,7 +420,7 @@ extension Section /* Condition */{
 
     func show(row: BaseRow) {
         guard !kvoWrapper.rows.contains(row) else { return }
-        guard var index = kvoWrapper._allRows.index(of: row) else { return }
+        guard var index = kvoWrapper._allRows.firstIndex(of: row) else { return }
         var formIndex = NSNotFound
         while formIndex == NSNotFound && index > 0 {
             index = index - 1
@@ -400,6 +429,24 @@ extension Section /* Condition */{
         }
         kvoWrapper.rows.insert(row, at: formIndex == NSNotFound ? 0 : formIndex + 1)
     }
+}
+
+extension Section /* Helpers */ {
+
+    /**
+     *  This method inserts a row after another row.
+     *  It is useful if you want to insert a row after a row that is currently hidden. Otherwise use `insert(at: Int)`.
+     *  It throws an error if the old row is not in this section.
+     */
+    public func insert(row newRow: BaseRow, after previousRow: BaseRow) throws {
+        guard let rowIndex = (kvoWrapper._allRows as [BaseRow]).firstIndex(of: previousRow) else {
+            throw EurekaError.rowNotInSection(row: previousRow)
+        }
+        kvoWrapper._allRows.insert(newRow, at: index(after: rowIndex))
+        show(row: newRow)
+        newRow.wasAddedTo(section: self)
+    }
+
 }
 
 /**
@@ -452,25 +499,32 @@ open class MultivaluedSection: Section {
         self.multivaluedOptions = multivaluedOptions
         super.init(header: header, footer: footer, {section in initializer(section as! MultivaluedSection) })
         guard multivaluedOptions.contains(.Insert) else { return }
-        let addRow = addButtonProvider(self)
-        addRow.onCellSelection { cell, row in
-            guard let tableView = cell.formViewController()?.tableView, let indexPath = row.indexPath else { return }
-            cell.formViewController()?.tableView(tableView, commit: .insert, forRowAt: indexPath)
-        }
-        self <<< addRow
+        initialize()
     }
 
     public required init() {
         self.multivaluedOptions = MultivaluedOptions.Insert.union(.Delete)
         super.init()
+        initialize()
+    }
+
+    #if swift(>=4.1)
+    public required init<S>(_ elements: S) where S : Sequence, S.Element == BaseRow {
+        self.multivaluedOptions = MultivaluedOptions.Insert.union(.Delete)
+        super.init(elements)
+        initialize()
+    }
+    #endif
+
+    func initialize() {
         let addRow = addButtonProvider(self)
         addRow.onCellSelection { cell, row in
+            guard !row.isDisabled else { return }
             guard let tableView = cell.formViewController()?.tableView, let indexPath = row.indexPath else { return }
             cell.formViewController()?.tableView(tableView, commit: .insert, forRowAt: indexPath)
         }
         self <<< addRow
     }
-
     /**
      Method used to get all the values of the section.
 
